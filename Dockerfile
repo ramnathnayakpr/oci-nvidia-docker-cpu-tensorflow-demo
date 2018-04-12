@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:latest-devel-gpu-py3
+FROM tensorflow/tensorflow:latest-devel-py3
 EXPOSE 80
 RUN apt-get update && apt-get install -y npm vim bash
 RUN git clone https://github.com/tensorflow/models
