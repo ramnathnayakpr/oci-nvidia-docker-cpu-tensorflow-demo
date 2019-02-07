@@ -1,6 +1,6 @@
 FROM tensorflow/tensorflow:latest-devel-py3
 EXPOSE 80
-RUN apt-get update && apt-get install -y npm vim bash
+RUN apt-get update && apt-get install -y npm vim bash wget
 RUN git clone https://github.com/tensorflow/models
 RUN mkdir /tmp/imagenet
 WORKDIR /tmp/imagenet
