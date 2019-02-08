@@ -22,9 +22,11 @@ pipeline {
                 sh "docker push lhr.ocir.io/intrnayak/oci-nvidia-docker-cpu-tensorflow-demo:latest"
             }
         }
-        stage('Test kubectl') {
+        stage('Deploy new image with rolling update') {
             steps {
-                sh 'kubectl cluster-info'
+                sh 'kubectl set image deployment oci-nvidia-docker-cpu-tensorflow-demo oci-nvidia-docker-cpu-tensorflow-demo=oci-nvidia-docker-cpu-tensorflow-demo:latest'
+                sh 'kubectl rollout status deployment oci-nvidia-docker-cpu-tensorflow-demo'
+                sh "kubectl label pods --all git_commit=$GIT_COMMIT"
             }
         }
     }
