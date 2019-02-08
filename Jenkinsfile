@@ -22,5 +22,10 @@ pipeline {
                 sh "docker push lhr.ocir.io/intrnayak/oci-nvidia-docker-cpu-tensorflow-demo:latest"
             }
         }
+        stage('Test kubectl') {
+            steps {
+                sh 'kubectl cluster-info'
+            }
+        }
     }
 }
