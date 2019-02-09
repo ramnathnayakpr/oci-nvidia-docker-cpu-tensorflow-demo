@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sh 'kubectl set image deployment oci-nvidia-docker-cpu-tensorflow-demo oci-nvidia-docker-cpu-tensorflow-demo=lhr.ocir.io/intrnayak/oci-nvidia-docker-cpu-tensorflow-demo:latest'
                 sh 'kubectl rollout status deployment oci-nvidia-docker-cpu-tensorflow-demo'
-                sh "kubectl label pods --all git_commit=$GIT_COMMIT"
+                sh "kubectl label pods --overwrite --all git_commit=$GIT_COMMIT"
             }
         }
     }
