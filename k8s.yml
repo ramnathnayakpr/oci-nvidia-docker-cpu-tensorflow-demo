@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: oci-nvidia-docker-cpu-tensorflow-demo
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: oci-nvidia-docker-cpu-tensorflow-demo
+    spec:
+      containers:
+        - name: oci-nvidia-docker-cpu-tensorflow-demo
+          image: 'lhr.ocir.io/intrnayak/oci-nvidia-docker-cpu-tensorflow-demo:latest'
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oci-nvidia-docker-cpu-tensorflow-demo-service
+  labels:
+    name: oci-nvidia-docker-cpu-tensorflow-demo-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: oci-nvidia-docker-cpu-tensorflow-demo
+  type: LoadBalancer
