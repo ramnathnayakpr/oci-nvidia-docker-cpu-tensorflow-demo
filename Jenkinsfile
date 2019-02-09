@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Deploy new image with rolling update') {
             steps {
-                sh 'kubectl set image deployment oci-nvidia-docker-cpu-tensorflow-demo oci-nvidia-docker-cpu-tensorflow-demo=oci-nvidia-docker-cpu-tensorflow-demo:latest'
+                sh 'kubectl set image deployment oci-nvidia-docker-cpu-tensorflow-demo oci-nvidia-docker-cpu-tensorflow-demo=lhr.ocir.io/intrnayak/oci-nvidia-docker-cpu-tensorflow-demo:latest'
                 sh 'kubectl rollout status deployment oci-nvidia-docker-cpu-tensorflow-demo'
                 sh "kubectl label pods --all git_commit=$GIT_COMMIT"
             }
